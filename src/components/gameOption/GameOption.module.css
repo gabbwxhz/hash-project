@@ -8,3 +8,7 @@
     align-items: center;
     cursor: pointer;
 }
+
+.winner {
+    border: 1px solid #00eeff;
+}

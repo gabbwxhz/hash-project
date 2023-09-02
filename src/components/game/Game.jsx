@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 import styles from './Game.module.css'
 
-import GameOption from '../gameOption/gameOption'
+import GameOption from '../gameOption/GameOption'
 import GameInfo from '../gameInfo/GameInfo'
 
 const winnerTable = [
@@ -23,6 +23,7 @@ function Game() {
     const [gameState, setGameState] = useState(Array(9).fill(0))
     const [currentPlayer, setCurrentPlayer] = useState(1)
     const [winner, setWinner] = useState(0)
+    const [winnerLine, setWinnerLine] = useState([])
 
     const handleClick = (position) => {
         if (gameState[position] === 0 && winner === 0) {
@@ -36,14 +37,20 @@ function Game() {
         winnerTable.forEach((i) => {
             const values = i.map((position) => gameState[position])
             const sum = values.reduce((sum, total) => sum + total)
-            if (sum === 3 || sum === -3) setWinner(sum / 3)
+            if (sum === 3 || sum === -3) {
+                setWinner(sum / 3)
+                setWinnerLine(i)
+            }
         })
     }
 
     const handleReset = () => {
         setGameState(Array(9).fill(0))
         setWinner(0)
+        setWinnerLine([])
     }
+
+    const verifyWinnerLine = (pos) => winnerLine.find((value) => value === pos) !== undefined
 
     useEffect(() => { //! sempre deve ser estes dois parametros, uma function e um array
         setCurrentPlayer(currentPlayer * (-1))
@@ -60,6 +67,7 @@ function Game() {
                             key={`game-option-position-${position}`}
                             status={value}
                             onClick={() => handleClick(position)}
+                            isWinner={verifyWinnerLine(position)}
                         />
                     )
                 }
