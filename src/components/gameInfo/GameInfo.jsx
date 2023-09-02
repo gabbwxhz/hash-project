@@ -29,9 +29,7 @@ function GameInfo({ currentPlayer, winner, onReset }) {
             {
                 winner !== 0 &&
                 <>
-                    <h3 >Fim de Jogo!</h3>
-                    <h3 >Campeão:</h3>
-
+                    <h3 >Fim de Jogo! Campeão:</h3>
                     {
                         winner === 1 && <Icon iconName="circle" />
                     }
