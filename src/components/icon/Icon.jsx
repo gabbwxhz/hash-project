@@ -1,5 +1,3 @@
-import syles from './Icons.module.css'
-
 function Icon({ iconName, size, link }) {
     return (
         <a href={link} target='_blank'>

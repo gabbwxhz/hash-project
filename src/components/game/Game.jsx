@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 
 import styles from './Game.module.css'
 
-import Icon from '../icon/Icon'
 import GameOption from '../gameOption/gameOption'
+import GameInfo from '../gameInfo/GameInfo'
 
 const winnerTable = [
     [0, 1, 2],
@@ -26,7 +26,6 @@ function Game() {
 
     const handleClick = (position) => {
         if (gameState[position] === 0 && winner === 0) {
-            0
             let newGameState = [...gameState]
             newGameState[position] = currentPlayer
             setGameState(newGameState)
@@ -41,6 +40,11 @@ function Game() {
         })
     }
 
+    const handleReset = () => {
+        setGameState(Array(9).fill(0))
+        setWinner(0)
+    }
+
     useEffect(() => { //! sempre deve ser estes dois parametros, uma function e um array
         setCurrentPlayer(currentPlayer * (-1))
         verifyGame()
@@ -50,7 +54,6 @@ function Game() {
         <div className={styles.gameContent}>
 
             <div className={styles.game}>
-
                 {
                     gameState.map((value, position) =>
                         <GameOption
@@ -62,16 +65,12 @@ function Game() {
                 }
             </div>
 
-            <div className={styles.gameInfo}>
-                <h3>Próximo a jogar:</h3>
-                {
-                    currentPlayer === 1 && <Icon iconName="circle" />
-                }
-                {
-                    currentPlayer === -1 && <Icon iconName="x" />
-                }
+            <GameInfo
+                currentPlayer={currentPlayer}
+                winner={winner}
+                onReset={handleReset}
+            />
 
-            </div>
         </div>
     )
 }
