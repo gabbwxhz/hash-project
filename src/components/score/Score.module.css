@@ -1,0 +1,15 @@
+.scoreTitle{
+    margin-top: 50px;
+}
+
+.score{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.scoreContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
