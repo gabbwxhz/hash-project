@@ -2,7 +2,7 @@ import styles from './Score.module.css'
 
 import Icon from '../icon/Icon'
 
-function Score() {
+function Score({ winnerCircle, winnerX }) {
     return (
         <>
             <h3 className={styles.scoreTitle}>Placar:</h3>
@@ -10,12 +10,12 @@ function Score() {
             <div className={styles.score}>
                 <div className={styles.scoreContent}>
                     <Icon iconName="circle" />
-                    <h2>0</h2>
+                    <h2>{winnerCircle}</h2>
                 </div>
 
                 <div className={styles.scoreContent}>
                     <Icon iconName="x" />
-                    <h2>0</h2>
+                    <h2>{winnerX}</h2>
                 </div>
             </div>
 
